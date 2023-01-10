@@ -6,7 +6,7 @@ namespace VehiclesService.Domain.Models
     {
         #region Properties
         public long BrandId { get; private set; }
-        public Brand Brand { get; private set; }
+        public Brand? Brand { get; private set; }
         public string Name { get; private set; }
         public string Description { get; private set; }
         public VehicleType Type { get; private set; }
@@ -43,10 +43,10 @@ namespace VehiclesService.Domain.Models
             ProductionStart = productionStart;
         }
 
-        public void EndProduction(DateTime? productionEnd, bool productionEnded)
+        public void EndProduction(DateTime productionEnd)
         {
             ProductionEnd = productionEnd;
-            ProductionEnded = productionEnded;
+            ProductionEnded = true;
         }
 
         public override string ToString() => Name;

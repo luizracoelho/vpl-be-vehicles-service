@@ -6,13 +6,15 @@ namespace VehiclesService.Data.Context
 {
     public class VehiclesContext : DbContext, IDataContext
     {
-        public VehiclesContext(DbContextOptions<VehiclesContext> options) : base(options) { }
+        public VehiclesContext(DbContextOptions<VehiclesContext> options) : base(options)
+        {
+            //ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            //ChangeTracker.AutoDetectChangesEnabled = false;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(VehiclesContext).Assembly);
-
-            base.OnModelCreating(modelBuilder);
         }
 
         #region DbSets

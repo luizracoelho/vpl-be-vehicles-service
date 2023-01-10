@@ -8,8 +8,8 @@ namespace VehiclesService.Data.Context
     {
         public VehiclesContext(DbContextOptions<VehiclesContext> options) : base(options)
         {
-            //ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
-            //ChangeTracker.AutoDetectChangesEnabled = false;
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+            ChangeTracker.AutoDetectChangesEnabled = false;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

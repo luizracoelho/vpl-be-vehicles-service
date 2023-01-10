@@ -21,14 +21,14 @@ namespace VehiclesService.IoC
             var password = config["DB:PASSWORD"];
             var database = config["DB:DATABASE"];
 
-            var connectionString = $"server=10.100.115.6;port=33067;database=dev-vehicles;userid=sa;pwd=Onsoft@2019#Apps";
+            var connectionString = $"server={host};port={port};database={database};userid={user};pwd={password}";
 
             services.AddDbContext<VehiclesContext>(
               options => options.UseMySql(connectionString,
                                            ServerVersion.AutoDetect(connectionString),
                                              x =>
                                              {
-                                                 //x.MigrationsAssembly(typeof(VehiclesContext).Assembly.FullName);
+                                                 x.MigrationsAssembly(typeof(VehiclesContext).Assembly.FullName);
                                              }).LogTo(Console.WriteLine, LogLevel.Information));
             #endregion
 
@@ -39,16 +39,16 @@ namespace VehiclesService.IoC
 
             #region Repos
             services.AddScoped<IBrandRepo, BrandRepo>();
-            //services.AddScoped<IModelRepo, ModelRepo>();
-            //services.AddScoped<IVehicleRepo, VehicleRepo>();
+            services.AddScoped<IModelRepo, ModelRepo>();
+            services.AddScoped<IVehicleRepo, VehicleRepo>();
             #endregion
 
             #region Mediatr
-            //services.AddMediatR(AppDomain.CurrentDomain.Load("VehiclesService"));
+            services.AddMediatR(AppDomain.CurrentDomain.Load("VehiclesService"));
             #endregion
 
             #region AutoMapper
-            //services.AddAutoMapper(typeof(MapProfile));
+            services.AddAutoMapper(typeof(MapProfile));
             #endregion
 
             return services;

@@ -5,6 +5,9 @@ using VehiclesService.Domain.ViewModels.Brands;
 
 namespace VehiclesService.App.Queries.Brands
 {
+    /// <summary>
+    /// Responsável por encontrar uma marca a partir de um Id
+    /// </summary>
     public class FindBrandByIdQuery : IRequest<BrandVm>
     {
         public long Id { get; set; }
